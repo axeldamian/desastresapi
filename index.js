@@ -23,7 +23,7 @@ app.get('/mapa', function(req, res) {
     var headers ='<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>';
       headers+='<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxk0t7Bdctk0PxDMUJ9AiEPtJcDTcl8Jc"></script>';
       headers+='<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.googlemap/1.5/jquery.googlemap.min.js"></script>';
-    var respuestaJHTML ='<div id="map" style="width: 600px; height: 600px;"></div><script type="text/javascript">$(function() {$("#map").googleMap();$("#map").googleMap({"zoom":15});';
+    var respuestaJHTML ='<div id="map" style="width: 400px; height: 540px;"></div><script type="text/javascript">$(function() {$("#map").googleMap();$("#map").googleMap({"zoom":15});';
         respuestaJHTML+='$("#map").addMarker({';
         respuestaJHTML+='coords: ['+req.query.x+','+req.query.y+'],';
         respuestaJHTML+='title: "Ubicacion del desastre",';
@@ -43,6 +43,15 @@ app.get('/terremotos', function(req, res) {
     .status(200).send( objetosTerremotos );
 });
 
+/*
+app.get('/terremotos/:id', function(req, res) {
+    var i = 0;
+    while( objetosTerremotos[i].id == req. ){
+
+    }
+    res
+    .status(200).send( objetosTerremotos );
+});*/
 
 app.get('/climaticos', function(req, res) {
     res
