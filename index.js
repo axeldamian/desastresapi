@@ -43,15 +43,15 @@ app.get('/terremotos', function(req, res) {
     .status(200).send( objetosTerremotos );
 });
 
-/*
+
 app.get('/terremotos/:id', function(req, res) {
     var i = 0;
-    while( objetosTerremotos[i].id == req. ){
-
+    while( objetosTerremotos[i].id < req.params.id ){
+        i++;
     }
     res
-    .status(200).send( objetosTerremotos );
-});*/
+    .status(200).send( objetosTerremotos[i] );
+});
 
 app.get('/climaticos', function(req, res) {
     res
