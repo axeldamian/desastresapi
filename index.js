@@ -1,3 +1,6 @@
+var http = require("http");
+var server = http.createServer();
+
 var express = require('express'); //  npm install express
 var request = require ('request'); //npm install -save request
 var bodyParser = require('body-parser'); // npm install body-parser --save
@@ -62,11 +65,7 @@ app.get('/otros', function(req, res) {
 });
 
 
-// escuchador:
-app.listen(3000, function () {
-  console.log('escuchando el puerto 3000..');
-});
-
+server.listen(process.env.PORT || 3005);
 
 var info1 = {'descripcion':'9,5 Ritcher','fecha':'1960','lugar':'Valdivia - Chile','coordenada':'x=-39.8173788&y=-73.2425333','muertes':2000};
 var info2 = {'descripcion':'9,2 Ritcher','fecha':'1964','lugar':'Anchorage Alaska, Estados Unidos','coordenada':'x=61.2180556&y=-149.9002778','muertes':1400};
@@ -129,3 +128,11 @@ function dmsToDeg (dms) {
     var dec = (d + (m / 60.0) + (s / 3600.0) + (r / 3600.0)) * neg;
     return dec;
 }
+
+
+/*
+// escuchador:
+app.listen(3000, function () {
+  console.log('escuchando el puerto 3000..');
+});
+*/
