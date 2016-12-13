@@ -70,7 +70,7 @@ app.get('/climaticos/:id/:var', function(req, res) {
         i++;
     }
     res
-    .status(200).send( objetosClimaticos[i].req.params.descripcion );
+    .status(200).send( objetosClimaticos[i].req.params.var );
 });
 
 app.get('/erupciones', function(req, res) {
