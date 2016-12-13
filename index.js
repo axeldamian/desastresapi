@@ -58,9 +58,29 @@ app.get('/climaticos', function(req, res) {
     .status(200).send( objetosClimaticos );
 });
 
+
+app.get('/climaticos/:id', function(req, res) {
+    var i = 0;
+    while( objetosClimaticos[i].id < req.params.id ){
+        i++;
+    }
+    res
+    .status(200).send( objetosClimaticos[i] );
+});
+
+
 app.get('/erupciones', function(req, res) {
     res
     .status(200).send( objetosErupciones );
+});
+
+app.get('/erupciones/:id', function(req, res) {
+    var i = 0;
+    while( objetosErupciones[i].id < req.params.id ){
+        i++;
+    }
+    res
+    .status(200).send( objetosErupciones[i] );
 });
 
 app.get('/tsunamis', function(req, res) {
@@ -68,9 +88,27 @@ app.get('/tsunamis', function(req, res) {
     .status(200).send( objetosTsunamis );
 });
 
+app.get('/tsunamis/:id', function(req, res) {
+    var i = 0;
+    while( objetosTsunamis[i].id < req.params.id ){
+        i++;
+    }
+    res
+    .status(200).send( objetosTsunamis[i] );
+});
+
 app.get('/otros', function(req, res) {
     res
     .status(200).send( objetosOtros );
+});
+
+app.get('/otros/:id', function(req, res) {
+    var i = 0;
+    while( objetosOtros[i].id < req.params.id ){
+        i++;
+    }
+    res
+    .status(200).send( objetosOtros[i] );
 });
 
 
