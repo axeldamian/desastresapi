@@ -65,7 +65,7 @@ app.get('/otros', function(req, res) {
 });
 
 
-server.listen(process.env.PORT || 3005);
+app.listen(process.env.PORT || 3005);
 
 var info1 = {'descripcion':'9,5 Ritcher','fecha':'1960','lugar':'Valdivia - Chile','coordenada':'x=-39.8173788&y=-73.2425333','muertes':2000};
 var info2 = {'descripcion':'9,2 Ritcher','fecha':'1964','lugar':'Anchorage Alaska, Estados Unidos','coordenada':'x=61.2180556&y=-149.9002778','muertes':1400};
