@@ -16,8 +16,6 @@ app.get('/', function (req, res) {
   res.send(resHTML);
 });
 
-
-
 //http://localhost:3000/mapa?x=-32.9138674&y=-68.8500436
 app.get('/mapa', function(req, res) {
     var headers ='<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>';
@@ -43,7 +41,6 @@ app.get('/terremotos', function(req, res) {
     .status(200).send( objetosTerremotos );
 });
 
-
 app.get('/terremotos/:id', function(req, res) {
     var i = 0;
     while( objetosTerremotos[i].id < req.params.id ){
@@ -58,7 +55,6 @@ app.get('/climaticos', function(req, res) {
     .status(200).send( objetosClimaticos );
 });
 
-
 app.get('/climaticos/:id', function(req, res) {
     var i = 0;
     while( objetosClimaticos[i].id < req.params.id ){
@@ -68,6 +64,14 @@ app.get('/climaticos/:id', function(req, res) {
     .status(200).send( objetosClimaticos[i] );
 });
 
+app.get('/climaticos/:id/:var', function(req, res) {
+    var i = 0;
+    while( objetosClimaticos[i].id < req.params.id ){
+        i++;
+    }
+    res
+    .status(200).send( objetosClimaticos[i].req.params.descripcion );
+});
 
 app.get('/erupciones', function(req, res) {
     res
@@ -111,7 +115,6 @@ app.get('/otros/:id', function(req, res) {
     .status(200).send( objetosOtros[i] );
 });
 
-
 app.listen(process.env.PORT || 3005);
 
 var info1 = {'id':0,'descripcion':'9,5 Ritcher','fecha':'1960','lugar':'Valdivia - Chile','coordenada':'x=-39.8173788&y=-73.2425333','muertes':2000};
@@ -121,7 +124,6 @@ var info4 = {'id':3,'descripcion':'9,0 Ritcher','fecha':'2011','lugar':'Japon','
 var info5 = {'id':4,'descripcion':'8,8 Ritcher','fecha':'2010','lugar':'Cobqeucura - Chile','coordenada':'x=-36.1386156&y=-72.7945218','muertes':150};
 var objetosTerremotos = [info1,info2,info3,info4,info5];
 
-
 var climat1 = {'id':0,'descripcion':'katrina','fecha':'2005','lugar':'Atlántico','coordenada':'x=29.9811248&y=-90.11073','muertes':2541,'danios':'$89.600 millones'};
 var climat2 = {'id':1,'descripcion':'Sandy','fecha':'2012','lugar':'Atlántico','coordenada':'x=41.167362&y=-78.731262','muertes':287,'danios':'$50.000 millones'};
 var climat3 = {'id':2,'descripcion':'Andrew','fecha':'1992','lugar':'Atlántico','coordenada':'x=34.5257603&y=-92.4146534','muertes':65,'danios':'$40.700 millones'};
@@ -129,14 +131,12 @@ var climat4 = {'id':3,'descripcion':'Ike','fecha':'2008','lugar':'Atlántico','c
 var climat5 = {'id':4,'descripcion':'Wilma','fecha':'2005','lugar':'Atlántico','coordenada':'x=21.4691137&y=-78.6568942','muertes':62,'danios':'$29.100 millones'};
 var objetosClimaticos = [climat1,climat2,climat3,climat4,climat5];
 
-
 var erupcion1 = {'id':0,'descripcion':' Erupción del Tambora','fecha':'1815','lugar':'Indonesia','coordenada':'x=-8.2479246&y=117.991101','muertes':'se desconoce','danios':'0'};
 var erupcion2 = {'id':1,'descripcion':' Volcán de Krakatoa','fecha':'1883','lugar':'Indonesia','coordenada':'x=-6.1021175&y=105.4229873','muertes':'se desconoce','danios':'La erupción liberó 9 kilómetros cúbicos de magma, destruyendo por completo la isla y alterando puestas de sol alrededor de todo el mundo.'};
 var erupcion3 = {'id':2,'descripcion':' Erupción de Santorini','fecha':'1610 a.c','lugar':'Grecia','coordenada':'x=36.3931562&y=25.4615092','muertes':'se desconoce','danios':'destruyó por completo al volcán, de la cual se cree que inspiró al mito de Atlantis.'};
 var erupcion4 = {'id':3,'descripcion':' Erupción de Santa María','fecha':'1902','lugar':'Guatemala','coordenada':'x=14.72443&y=-91.521393','muertes':'se desconoce','danios':' La erupción destruyó la cara suroeste de este volcán localizado en Guatemala, dejando un cráter de 1 kilómetro de diámetro, y logró aventar ceniza que fue localizada hasta en San Francisco, California.'};
 var erupcion5 = {'id':4,'descripcion':' Erupción del volcán Calbuco','fecha':'2015','lugar':'Chile','coordenada':'x=-41.33&y=-72.618333','muertes':'se desconoce','danios':'Causó graves daños a la agricultura y la ganadería y por su causa se declaró el estado de excepción constitucional de zona de catástrofe, alerta roja, toque de queda, evacuación forzada de unas 9000 personas, cerca de 500 viviendas dañadas, suspensión del tránsito aéreo y daños por unos US$40 000 000.'};
 var objetosErupciones = [erupcion1,erupcion2,erupcion3,erupcion4,erupcion5];
-
 
 var tsunami1 = {'id':0,'descripcion':'Terremoto y tsunami de Japón de 2011','fecha':'2011','lugar':'Japón','coordenada':'x=36.204824&y=138.252924','muertes':'15893 muertos,172 heridos,8,405 desaparecidos4','danios':'el daño causado por las catástrofes será equivalente a entre el 3 % y el 5 % del PIB de Japón,'};
 var tsunami2 = {'id':1,'descripcion':'Chile Central y Sur: La energía liberada fue cercana a 100 000 bombas atómicas como la liberada en Hiroshima en 1945.','fecha':'2010','lugar':'Chile','coordenada':'x=-34.23&y=-72.0','muertes':'se desconoce','danios':'Un fuerte tsunami impactó las costas chilenas como producto del terremoto, destruyendo varias localidades ya devastadas por el impacto telúrico. '};
@@ -146,9 +146,6 @@ var objetosTsunamis = [tsunami1,tsunami2,tsunami3];
 
 var incendio1 = {'id':0,'descripcion':'Alcalá la Real','fecha':'1915','lugar':'españa','coordenada':'x=37.4645203&y=-3.9241021','muertes':0,'danios':'se desconoce'};
 var objetosOtros = [incendio1];
-
-
-
 
 /////////////////////////////
 function dmsToDeg (dms) {
@@ -175,7 +172,6 @@ function dmsToDeg (dms) {
     var dec = (d + (m / 60.0) + (s / 3600.0) + (r / 3600.0)) * neg;
     return dec;
 }
-
 
 /*
 // escuchador:
