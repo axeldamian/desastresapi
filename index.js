@@ -5,6 +5,10 @@ var express = require('express'); //  npm install express
 var request = require ('request'); //npm install -save request
 var bodyParser = require('body-parser'); // npm install body-parser --save
 var cookieParser = require('cookie-parser');// npm install cookie-parser
+
+var path    = require("path"); // ni idea si necesito este paquete.
+
+
 var app = express();
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -114,6 +118,14 @@ app.get('/otros/:id', function(req, res) {
     res
     .status(200).send( objetosOtros[i] );
 });
+
+
+app.get('/ajax', function(req, res) {
+	//console.log("sss");
+	res.sendFile(path.join(__dirname+'/ajax.html'));
+   //res.sendFile('ajax.html');
+});
+
 
 app.listen(process.env.PORT || 3005);
 

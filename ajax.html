@@ -1,29 +1,80 @@
 <HTML>
 <head>
+
+<!--cargo libreria Jquery, hosteada online en el server de google:-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+
+<!-- script jquery: -->
 <script>
-$( document ).ready(function() {
+$( document ).ready(function() { // cuando la web ya esta cargada ejecuta esto:
 
+
+// lo que sucede si hago click en el boton 1:
 $(  "#boton1" ).on( "click", function() {
-
-    $.get( "/terremotos/1", function( data ) {
-      $( "#mostrador" ).html( data.coordenada );
+    $.get( "/terremotos/1", function( jsonPiola ) {
+      var contenido = "<ul>";
+	  contenido += "<li type='circle'>id: "+ jsonPiola.id +"</li>"
+	  contenido += "<li type='square'>descripcion: "+ jsonPiola.descripcion +"</li>"
+	  contenido += "<li type='disc'>fecha: "+ jsonPiola.fecha +"</li>"
+	  contenido += "<li type='disc'>lugar: "+ jsonPiola.lugar +"</li>"
+	  contenido += "<li type='disc'>coordenada: "+ jsonPiola.coordenada +"</li>"
+	  contenido += "<li type='disc'>muertes: "+ jsonPiola.muertes +"</li>"
+	  contenido += "</ul>"
+      $( "#mostrador" ).html( contenido );
       //alert( "Load was performed." );
     });
+}); // fin evento click en boton1
 
-});
+
+// lo que sucede si hago click en el boton 2:
+$(  "#boton2" ).on( "click", function() {
+    $.get( "/climaticos/3", function( data ) {
+      var contenido = "<ul>";
+	  contenido += "<li type='circle'>"+ data.id +"</li>"
+	  contenido += "<li type='square'>descripcion: "+ data.descripcion +"</li>"
+	  contenido += "<li type='disc'>fech: "+ data.fecha +"</li>"
+	  contenido += "<li type='disc'>lugar: "+ data.lugar +"</li>"
+	  contenido += "<li type='disc'>coordenada: "+ data.coordenada +"</li>"
+	  contenido += "<li type='disc'>muertes: "+ data.muertes +"</li>"
+	  contenido += "<li type='disc'>danios: "+ data.danios +"</li>"
+	  contenido += "</ul>"
+      $( "#mostrador" ).html( contenido );
+    });
+}); // fin evento click en boton2
+
+
 });
 
 </script>
 
+
+<style>
+ul {
+    background: #3399ff;
+    padding: 20px;
+}
+
+
+ul li {
+    background: #cce5ff;
+    margin: 5px;
+}
+
+#mostrador {
+ background-color:#ff9999;
+ width:500px;
+ height:500px;
+}
+</style>
+
+
 </head>
 <body>
 
-<button id="boton1" type="button">Mostrar Terremoto1</button>
-<button id="boton2" type="button">Mostrar Todos los terremotos</button>
-<div id="mostrador" style="background-color:red; width:500px;height:500px;">
-</div>
+<button id="boton1" type="button">Mostrar Terremoto 1</button>
+<button id="boton2" type="button">Mostrar Climatico 3</button>
+<div id="mostrador"></div>
 
 
 
